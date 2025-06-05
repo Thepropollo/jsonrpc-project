@@ -12,13 +12,13 @@ cd jsonrpc-project
 ```
 
 
-## Inicializar proyecto Node.js
+## 2. Inicializar proyecto Node.js
 ```bash
 npm init -y
 ```
 
 
-## Instalar dependencias
+## 3. Instalar dependencias
 ```bash
 npm install express
 npm install pg
