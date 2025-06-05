@@ -1,0 +1,88 @@
+mkdir jsonrpc-project
+.
+.
+cd jsonrpc-project
+
+// npm es el gestor de paquetes
+
+npm init -y
+
+.
+.
+npm install express
+.
+.
+npm install pg
+.
+.
+BD
+.
+CREATE TABLE usuarios (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100),
+  edad INTEGER
+);
+.
+CONSULTA
+.
+select * from usuarios
+.
+.
+URL: http://localhost:3000/rpc
+.
+.
+///CREAR USUARIO
+{
+  "jsonrpc": "2.0",
+  "method": "crearUsuario",
+  "params": {
+    "nombre": "Juan Pérez",
+    "edad": 30
+  },
+  "id": 1
+}
+-----------POSTMAN---------------------
+///LISTAR usuarios
+
+
+{
+  "jsonrpc": "2.0",
+  "method": "listarUsuarios",
+  "params": {},
+  "id": 2
+}
+
+//EDITAR USUARIO
+
+{
+  "jsonrpc": "2.0",
+  "method": "editarUsuario",
+  "params": {
+    "idUsuario": 1,
+    "nombre": "Juan Editado",
+    "edad": 35
+  },
+  "id": 3
+}
+
+///ELIMINAR USUARIO
+
+{
+  "jsonrpc": "2.0",
+  "method": "eliminarUsuario",
+  "params": {
+    "idUsuario": 1
+  },
+  "id": 4
+}
+
+///CALCULAR EDAD
+
+{
+  "jsonrpc": "2.0",
+  "method": "calcularEdad",
+  "params": {
+    "fechaNacimiento": "1995-06-10"
+  },
+  "id": 5
+}

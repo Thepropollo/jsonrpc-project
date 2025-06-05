@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuario JSON-RPC</title>
+</head>
+<body>
+  <h1>Usuario JSON-RPC</h1>
+
+  <h2>Crear Usuario</h2>
+  <input type="text" id="nombre" placeholder="Nombre">
+  <input type="number" id="edad" placeholder="Edad">
+  <button onclick="crearUsuario()">Crear</button>
+
+  <h2>Listar Usuarios</h2>
+  <button onclick="listarUsuarios()">Listar</button>
+
+  <h2>Eliminar Usuario</h2>
+  <input type="number" id="idEliminar" placeholder="ID a eliminar">
+  <button onclick="eliminarUsuario()">Eliminar</button>
+
+  <h2>Editar Usuario</h2>
+  <input type="number" id="idEditar" placeholder="ID a editar">
+  <input type="text" id="nuevoNombre" placeholder="Nuevo nombre">
+  <input type="number" id="nuevaEdad" placeholder="Nueva edad">
+  <button onclick="editarUsuario()">Editar</button>
+
+  <pre id="resultado"></pre>
+
+  <script>
+    async function enviarRPC(method, params) {
+      const response = await fetch("/rpc", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method,
+          params,
+          id: Date.now()
+        })
+      });
+
+      const json = await response.json();
+      document.getElementById("resultado").textContent = JSON.stringify(json, null, 2);
+    }
+
+    function crearUsuario() {
+      const nombre = document.getElementById("nombre").value;
+      const edad = parseInt(document.getElementById("edad").value);
+      enviarRPC("crearUsuario", { nombre, edad });
+    }
+
+    function listarUsuarios() {
+      enviarRPC("listarUsuarios", {});
+    }
+
+    function eliminarUsuario() {
+      const idUsuario = parseInt(document.getElementById("idEliminar").value);
+      enviarRPC("eliminarUsuario", { idUsuario });
+    }
+
+    function editarUsuario() {
+      const idUsuario = parseInt(document.getElementById("idEditar").value);
+      const nombre = document.getElementById("nuevoNombre").value;
+      const edad = parseInt(document.getElementById("nuevaEdad").value);
+      enviarRPC("editarUsuario", { idUsuario, nombre, edad });
+    }
+  </script>
+</body>
+</html>
