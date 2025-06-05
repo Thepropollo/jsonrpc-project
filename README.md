@@ -48,6 +48,10 @@ URL del servicio:
 ```bash
 POST http://localhost:3000/rpc
 ```
+## Verificar Credenciasles
+Dentro de jsonrpc-project/server.js <br>
+Se encentra las credenciales de acceso cambiar segun su conveniencia.
+![imagen](https://github.com/user-attachments/assets/e6a86336-00b7-4531-a835-1975f4007d00)
 
 ## 🚀 Levantar el servidor
 
