@@ -8,8 +8,8 @@ app.use(express.static("public"));  // Sirve archivos estáticos (index.html)
 const pool = new Pool({
   user: "postgres",      // tu usuario
   host: "localhost",
-  database: "jsonrpcdb", // tu base de datos
-  password: "bearba13",  // tu contraseña
+  database: "DATABASE_NAME", // tu base de datos
+  password: "PASSWORD",  // tu contraseña
   port: 5432,
 });
 
